@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -42,7 +43,7 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     @JsonIgnore
-    private List<Course> courses;
+    private Set<Course> courses;
 
     public Customer() {
     }
@@ -111,11 +112,11 @@ public class Customer {
         this.customerRecord = customerRecord;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 
@@ -130,6 +131,22 @@ public class Customer {
 
     public void setCourses(Course courses) {
         this.courses.add(courses);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return isDelete == customer.isDelete && Objects.equals(id, customer.id) && Objects.equals(name, customer.name)
+                && Objects.equals(birthDay, customer.birthDay) && Objects.equals(address, customer.address)
+                && Objects.equals(email, customer.email) && Objects.equals(phone, customer.phone)
+                && Objects.equals(gender, customer.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, birthDay, address, email, phone, gender, isDelete);
     }
 
     @Override
