@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class CustomerMapper {
 
     /**
-     *
      * @param customer input
      * @return CustomerDTO
      */

@@ -38,7 +38,7 @@ public class CourseController implements BaseCourseController {
     @GetMapping
     @Override
     public ResponseEntity<CoursePage> getPage(@RequestParam(name = "page", defaultValue = "0") Integer page,
-                                              @RequestParam(name = "size", defaultValue = "10") Integer size) {
+                                              @RequestParam(name = "size", defaultValue = "5") Integer size) {
         CoursePage coursePage = courseService.getAllCourseService(page - 1, size);
         return new ResponseEntity<>(coursePage, HttpStatus.OK);
     }

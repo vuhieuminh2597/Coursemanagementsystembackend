@@ -44,10 +44,10 @@ public class CustomerBuilder {
         return this;
     }
 
-    public CustomerBuilder setCustomerRecord (Set<RegistrationRecord> customerRecord){
-        this.customer.setCustomerRecord(customerRecord);
-        return this;
-    }
+//    public CustomerBuilder setCustomerRecord (Set<RegistrationRecord> customerRecord){
+//        this.customer.setCustomerRecord(customerRecord);
+//        return this;
+//    }
 
     public CustomerBuilder customerBuilder (boolean isDelete){
         this.customer.setDelete(isDelete);

@@ -193,7 +193,13 @@ public class CustomerServiceImpl implements CustomerService {
         Course course = courseRepository.findById(idCourse).orElseThrow(() ->
                 new NotFoundException(ConstException.COURSE_NOT_FOUND, idCourse)
         );
+        //Check học customer đã tồn tại trong lớp học hay chưa
+        if(customer.getCourses().contains(course)){
+            throw new DuplicateIdException(ConstException.CUSTOMER_ALREADY_EXIST_IN_COURSE,idCustomer);
+        }
         LocalDateTime date = LocalDateTime.now();//Lấy time  hiện tại
+        customer.setCourses(course);
+        course.setCustomers(customer);
         //Lưu thông tin record
         recordRepository.save(new RegistrationRecord(customer, course, date));
         return customerMapper.customerMapToCustomerDTO(customer);

@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface CourseRepository extends JpaRepository<Course,String> {
 
-    @Query("SELECT c FROM Course c ORDER BY c.name")
+    @Query("SELECT c FROM Course c ")
     Page<Course> findAllCourse (Pageable pageable);
     @Query("SELECT c.id FROM  Course c WHERE c.id = :id")
     Optional<String> findByIdCourseDuplicate(String id);

@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,9 +31,9 @@ public class Customer {
     @Column(name = "status_is_delete")
     private boolean isDelete;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_customer_id",referencedColumnName = "customer_id")
+    @JoinColumn(name = "fk_customer_id", referencedColumnName = "customer_id")
     @JsonIgnore
-    private Set<RegistrationRecord> customerRecord;
+    private List<RegistrationRecord> customerRecord;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -41,7 +42,8 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
     @JsonIgnore
-    private Set<Course> courses;
+    private List<Course> courses;
+
     public Customer() {
     }
 
@@ -101,12 +103,20 @@ public class Customer {
         this.gender = gender;
     }
 
-    public Set<RegistrationRecord> getCustomerRecord() {
+    public List<RegistrationRecord> getCustomerRecord() {
         return customerRecord;
     }
 
-    public void setCustomerRecord(Set<RegistrationRecord> customerRecord) {
+    public void setCustomerRecord(List<RegistrationRecord> customerRecord) {
         this.customerRecord = customerRecord;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 
     public boolean isDelete() {
@@ -117,12 +127,9 @@ public class Customer {
         isDelete = delete;
     }
 
-        public Set<Course> getCourses() {
-        return courses;
-    }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setCourses(Course courses) {
+        this.courses.add(courses);
     }
 
     @Override

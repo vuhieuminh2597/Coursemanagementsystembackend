@@ -1,10 +1,7 @@
 package com.example.coursems.builder.customer;
 
-import com.example.coursems.entity.Course;
 import com.example.coursems.entity.Customer;
-import com.example.coursems.entity.RegistrationRecord;
 
-import java.util.Set;
 
 public class CustomerUpdateParBuilder {
     private Customer customer;
@@ -63,10 +60,10 @@ public class CustomerUpdateParBuilder {
         return this;
     }
 
-    public CustomerUpdateParBuilder setCustomerRecord(Set<RegistrationRecord> customerRecord) {
-        this.customer.setCustomerRecord(customerRecord);
-        return this;
-    }
+//    public CustomerUpdateParBuilder setCustomerRecord(Set<RegistrationRecord> customerRecord) {
+//        this.customer.setCustomerRecord(customerRecord);
+//        return this;
+//    }
 
 //    public CustomerUpdateParBuilder setCourse(Set<Course> courses) {
 //        this.customer.setCourses(courses);

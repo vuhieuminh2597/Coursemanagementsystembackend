@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,11 +24,11 @@ public class Course {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_course_id", referencedColumnName = "course_id")
     @JsonIgnore
-    private Set<RegistrationRecord> courseRecord;
+    private List<RegistrationRecord> courseRecord;
 
     @ManyToMany(mappedBy = "courses")
     @JsonIgnore
-    private Set<Customer> customers;
+    private List<Customer> customers;
 
     public Course() {
     }
@@ -62,19 +63,23 @@ public class Course {
         this.description = description;
     }
 
-    public Set<RegistrationRecord> getCourseRecord() {
+    public List<RegistrationRecord> getCourseRecord() {
         return courseRecord;
     }
 
-    public void setCourseRecord(Set<RegistrationRecord> customerRecord) {
-        this.courseRecord = customerRecord;
+    public void setCourseRecord(List<RegistrationRecord> courseRecord) {
+        this.courseRecord = courseRecord;
     }
 
-    public Set<Customer> getCustomers() {
+    public List<Customer> getCustomers() {
         return customers;
     }
 
-    public void setCustomers(Set<Customer> customers) {
+    public void setCustomers(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    public void setCustomers(Customer customers) {
+        this.customers.add(customers);
     }
 }
