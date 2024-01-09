@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(path = "api/v1/customer")
+@RequestMapping(path = "api/v1/customers")
 @CrossOrigin(origins = "http://localhost:8080")//Spring security
 public class CustomerController implements BaseCustomerController {
     private CustomerService customerService;
